@@ -17,14 +17,20 @@ public class HelloSpringApplication {
         // Tuy nhiên có thể khoanh vùng phạm vi bằng 2 cách scan trong annotaion
 
         // Kiểm tra kết quả
-        Outfit outfit = context.getBean(Outfit.class);
-        System.out.println("Instance: " + outfit);
-        outfit.wear();
+//        Outfit outfit = context.getBean(Outfit.class);
+//        System.out.println("Instance: " + outfit);
+//        outfit.wear();
 
         // Thử @Autowired
         Girl girl = context.getBean(Girl.class);
         System.out.println(girl + " - " + girl.getOutfit());
         girl.getOutfit().wear();
+
+        // Cách spring hoạt động với @Autowired (constructor -> setter -> reflection):
+        // + Spring sẽ tìm xem có constructor nào dùng được không
+        // + Nếu không -> tìm xem có setter nào không
+        // + Nếu không -> dùng reflecttion
+        // Note: @Autowired có thể được dùng cho method() và khi đó spring sẽ tự động gọi method đó và inject những bean cần thiết
     }
 
 }
