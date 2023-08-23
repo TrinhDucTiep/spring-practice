@@ -1,0 +1,30 @@
+package com.example.hellospring;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ConfigurableApplicationContext;
+
+@SpringBootApplication
+public class HelloSpringApplication {
+
+    public static void main(String[] args) {
+        // Nhiệm vụ chính của Spring là tạo ra một cái Container chứa các Dependency cho chúng ta
+        // ApplicationContext chính là container, chứa toàn bộ các Bean
+        ConfigurableApplicationContext context = SpringApplication.run(HelloSpringApplication.class, args);
+
+        // Khi chạy xong, lúc này context sẽ chứa các Bean có đánh dấu là @Component
+        // Mặc định thì container sẽ đi tìm tất cả các package cùng cấp hoặc cấp nhỏ hơn so với lớp chứa hàm main
+        // Tuy nhiên có thể khoanh vùng phạm vi bằng 2 cách scan trong annotaion
+
+        // Kiểm tra kết quả
+        Outfit outfit = context.getBean(Outfit.class);
+        System.out.println("Instance: " + outfit);
+        outfit.wear();
+
+        // Thử @Autowired
+        Girl girl = context.getBean(Girl.class);
+        System.out.println(girl + " - " + girl.getOutfit());
+        girl.getOutfit().wear();
+    }
+
+}
