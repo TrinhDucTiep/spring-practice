@@ -10,9 +10,9 @@ public class HelloSpringApplication {
     public static void main(String[] args) {
         // Nhiệm vụ chính của Spring là tạo ra một cái Container chứa các Dependency cho chúng ta
         // ApplicationContext chính là container, chứa toàn bộ các Bean
-        System.out.println("Trước khi IoC Container được khởi tạo");
+//        System.out.println("Trước khi IoC Container được khởi tạo");
         ConfigurableApplicationContext context = SpringApplication.run(HelloSpringApplication.class, args);
-        System.out.println("Sau khi Ioc Container được khởi tạo");
+//        System.out.println("Sau khi Ioc Container được khởi tạo");
 
         // Khi chạy xong, lúc này context sẽ chứa các Bean có đánh dấu là @Component
         // Mặc định thì container sẽ đi tìm tất cả các package cùng cấp hoặc cấp nhỏ hơn so với lớp chứa hàm main
@@ -24,9 +24,9 @@ public class HelloSpringApplication {
 //        outfit.wear();
 
         // Thử @Autowired
-        Girl girl = context.getBean(Girl.class);
-        System.out.println(girl + " - " + girl.getOutfit());
-        girl.getOutfit().wear();
+//        Girl girl = context.getBean(Girl.class);
+//        System.out.println(girl + " - " + girl.getOutfit());
+//        girl.getOutfit().wear();
 
         // Cách spring hoạt động với @Autowired (constructor -> setter -> reflection):
         // + Spring sẽ tìm xem có constructor nào dùng được không
@@ -36,11 +36,11 @@ public class HelloSpringApplication {
 
 
         // test @PostContruct và @PreDestroy
-        LifeCycleTest lifeCycleTest = context.getBean(LifeCycleTest.class);
-
-        System.out.println("Trước khi Bean bị phá huỷ");
-        context.getBeanFactory().destroyBean(lifeCycleTest);
-        System.out.println("Sau khi Bean bị phá huỷ");
+//        LifeCycleTest lifeCycleTest = context.getBean(LifeCycleTest.class);
+//
+//        System.out.println("Trước khi Bean bị phá huỷ");
+//        context.getBeanFactory().destroyBean(lifeCycleTest);
+//        System.out.println("Sau khi Bean bị phá huỷ");
 
 
         // kiến trúc controller-service-repository
@@ -50,6 +50,13 @@ public class HelloSpringApplication {
         => Note: về bản chất @Service & @Repository cũng giống như @Component (có thể thay thế nhau mà ko bị lỗi)
             chỉ là đặt tên khác nhau để phân biệt vai trò thôi
          */
+
+        // Test @Configure & @Bean
+        DBConnector mySqlConnector = (DBConnector) context.getBean("MySqlConfigure");
+        mySqlConnector.connect();
+
+        DBConnector posgreSqlConnector = (DBConnector) context.getBean("PosgreSqlConfigure");
+        posgreSqlConnector.connect();
     }
 
 }
