@@ -58,6 +58,17 @@ public class HelloSpringApplication {
 
         DBConnector posgreSqlConnector = (DBConnector) context.getBean("PosgreSqlConfigure");
         posgreSqlConnector.connect();
+
+        /*
+        Thymeleaf là một Java Template Engine. Có nhiệm vụ xử lý và generate ra các file HTML, XML, v.v..
+        Cú pháp của Thymeleaf sẽ là một attributes của thẻ HTML và bắt đầu bằng chữ th:.
+        Model (dạng key-value): là đối tượng lưu giữ thông tin và được sử dụng bởi Template Engine để generate ra webpage. Có thể hiểu nó là Context của Thymeleaf
+        Để lấy các thông tin trong Model -> sử dụng Thymeleaf Standard Expression:
+            + ${...}: Giá trị của một biến.
+            + {...}: Giá trị của một biến được chỉ định
+            + #{...}: Lấy message (từ biến có thể nằm trong file config .properties)
+            + @{...}: Lấy đường dẫn URL dựa theo context của server
+         */
     }
 
 }
