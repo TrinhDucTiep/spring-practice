@@ -1,5 +1,6 @@
 package com.example.hellospring;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -18,10 +19,14 @@ public class AppConfig {
     Ở đây AppConfig sẽ được tạo và đưa vào context, còn khi nào cần các đối tượng của method thì spring lúc đó mới gọi sau
      */
 
+    // Lấy value từ application.properties
+    @Value("tiepgroup.com.vn")
+    public String tiepUrl;
+
     @Bean("MySqlConfigure")
     public DBConnector mySqlConfigure() {
         DBConnector mySqlConnector = new MySqlConnector();
-        mySqlConnector.setUrl("https://mysql.db.com");
+        mySqlConnector.setUrl("https://mysql.db.com + " + tiepUrl);
         return mySqlConnector;
     }
 
