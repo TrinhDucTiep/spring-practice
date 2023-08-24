@@ -10,7 +10,9 @@ public class HelloSpringApplication {
     public static void main(String[] args) {
         // Nhiệm vụ chính của Spring là tạo ra một cái Container chứa các Dependency cho chúng ta
         // ApplicationContext chính là container, chứa toàn bộ các Bean
+        System.out.println("Trước khi IoC Container được khởi tạo");
         ConfigurableApplicationContext context = SpringApplication.run(HelloSpringApplication.class, args);
+        System.out.println("Sau khi Ioc Container được khởi tạo");
 
         // Khi chạy xong, lúc này context sẽ chứa các Bean có đánh dấu là @Component
         // Mặc định thì container sẽ đi tìm tất cả các package cùng cấp hoặc cấp nhỏ hơn so với lớp chứa hàm main
@@ -31,6 +33,14 @@ public class HelloSpringApplication {
         // + Nếu không -> tìm xem có setter nào không
         // + Nếu không -> dùng reflecttion
         // Note: @Autowired có thể được dùng cho method() và khi đó spring sẽ tự động gọi method đó và inject những bean cần thiết
+
+
+        // test @PostContruct và @PreDestroy
+        LifeCycleTest lifeCycleTest = context.getBean(LifeCycleTest.class);
+
+        System.out.println("Trước khi Bean bị phá huỷ");
+        context.getBeanFactory().destroyBean(lifeCycleTest);
+        System.out.println("Sau khi Bean bị phá huỷ");
     }
 
 }
