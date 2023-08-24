@@ -41,6 +41,15 @@ public class HelloSpringApplication {
         System.out.println("Trước khi Bean bị phá huỷ");
         context.getBeanFactory().destroyBean(lifeCycleTest);
         System.out.println("Sau khi Bean bị phá huỷ");
+
+
+        // kiến trúc controller-service-repository
+        /*
+        + @Service: gắn với component xử lý logic
+        + @Repository: gắn với component giao tiếp với DB
+        => Note: về bản chất @Service & @Repository cũng giống như @Component (có thể thay thế nhau mà ko bị lỗi)
+            chỉ là đặt tên khác nhau để phân biệt vai trò thôi
+         */
     }
 
 }
