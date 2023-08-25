@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>List Todo</title>
+
+    <link th:href="@{/css/bootstrap.css}" rel="stylesheet">
+    <link th:href="@{/css/main.css}" rel="stylesheet">
+
+    <script th:href="@{/js/bootstrap.js}"></script>
+</head>
+<body>
+    <h1>Danh sách việc cần làm:</h1>
+    <ul>
+        <!--    Duyệt qua từng phần tử trong biến todoList    -->
+        <li th:each="todo : ${todoList}">
+            <!--      Với mỗi phần tử lấy title và detail      -->
+            <span th:text="${todo.getTitle()}"></span> : <span th:text="${todo.getDetail()}"></span>
+        </li>
+    </ul>
+    <a th:href="@{/addTodo}" class="btn btn-success">+ Thêm công việc</a>
+</body>
+</html>

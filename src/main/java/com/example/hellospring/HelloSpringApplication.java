@@ -69,6 +69,11 @@ public class HelloSpringApplication {
             + #{...}: Lấy message (từ biến có thể nằm trong file config .properties)
             + @{...}: Lấy đường dẫn URL dựa theo context của server
          */
+
+        /*
+        @RequestMapping("url") cho class => các method sẽ có cùng chung đầu url như thế (có thể hiểu là cùng chung cách xử lý)
+        
+         */
     }
 
 }
