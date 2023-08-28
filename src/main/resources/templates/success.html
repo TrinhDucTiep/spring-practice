@@ -11,7 +11,7 @@
 </head>
 <body>
     <h1>To-do</h1>
-    <h1>Thêm thành công!</h1>
-    <a th:href="@{/listTodo}" class="btn btn-primary">Xem danh sách công việc</a>
+    <h1 style="color: green" th:text="#{tiep.message.success}"></h1>
+    <a th:href="@{/listTodo}" th:text="#{tiep.value.viewListTodo}" class="btn btn-primary"></a>
 </body>
 </html>

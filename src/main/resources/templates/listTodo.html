@@ -10,14 +10,14 @@
     <script th:href="@{/js/bootstrap.js}"></script>
 </head>
 <body>
-    <h1>Danh sách việc cần làm:</h1>
+    <h1 th:text="#{tiep.value.listTodo} + ':'"></h1>
     <ul>
-        <!--    Duyệt qua từng phần tử trong biến todoList    -->
+        <!-- Duyệt qua toàn bộ phần tử trong biến "todoList" -->
         <li th:each="todo : ${todoList}">
-            <!--      Với mỗi phần tử lấy title và detail      -->
+            <!-- Với mỗi phần tử, lấy ra title và detail -->
             <span th:text="${todo.getTitle()}"></span> : <span th:text="${todo.getDetail()}"></span>
         </li>
     </ul>
-    <a th:href="@{/addTodo}" class="btn btn-success">+ Thêm công việc</a>
+    <a th:href="@{/addTodo}" th:text="#{tiep.value.addTodo}" class="btn btn-success"></a>
 </body>
 </html>

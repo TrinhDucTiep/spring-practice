@@ -54,11 +54,11 @@ public class HelloSpringApplication {
          */
 
         // Test @Configure & @Bean
-        DBConnector mySqlConnector = (DBConnector) context.getBean("MySqlConfigure");
-        mySqlConnector.connect();
-
-        DBConnector posgreSqlConnector = (DBConnector) context.getBean("PosgreSqlConfigure");
-        posgreSqlConnector.connect();
+//        DBConnector mySqlConnector = (DBConnector) context.getBean("MySqlConfigure");
+//        mySqlConnector.connect();
+//
+//        DBConnector posgreSqlConnector = (DBConnector) context.getBean("PosgreSqlConfigure");
+//        posgreSqlConnector.connect();
 
         /*
         Thymeleaf là một Java Template Engine. Có nhiệm vụ xử lý và generate ra các file HTML, XML, v.v..
@@ -76,30 +76,33 @@ public class HelloSpringApplication {
         
          */
 
-    // jpa - mysql
-        UserRepository userRepository = context.getBean(UserRepository.class);
-        // Lấy toàn bộ user trong db ra
-        userRepository.findAll().forEach(System.out::println);
+//    // jpa - mysql
+//        UserRepository userRepository = context.getBean(UserRepository.class);
+//        // Lấy toàn bộ user trong db ra
+//        userRepository.findAll().forEach(System.out::println);
         /*
         System.out::println là cách viết ngắn gọn cho method reference từ phương thức tĩnh println()
         của lớp System.out. Thay vì viết element -> System.out.println(element) (sử dụng lambda expression),
         bạn có thể viết ngắn gọn hơn bằng cách sử dụng method reference như System.out::println.
          */
         // Lưu 1 user vào db
-        User user = userRepository.save(new User());
-        // Khi lưu xong thì sẽ nhận về được user kèm theo id
-        System.out.println("User vừa lưu có id: " + user.getId());
-        user.setAgi(11);
-        userRepository.save(user); // vì user này đã có rồi nên nó chỉ update chứ không thêm mới
-        // Lấy user vừa xong để kiểm tra
-        User user2 = userRepository.findById(user.getId()).get();
-        System.out.println("User: " + user);
-        System.out.println("User2: " + user2);
-        Long userId = user.getId();
-        // Xoá user khỏi db & kiểm tra xem còn tồn tại không
-        userRepository.delete(user);
-        User user3 = userRepository.findById(userId).orElse(null);
-        System.out.println("User3-(check deleted?): " + user3);
+//        User user = userRepository.save(new User());
+//        // Khi lưu xong thì sẽ nhận về được user kèm theo id
+//        System.out.println("User vừa lưu có id: " + user.getId());
+//        user.setAgi(11);
+//        userRepository.save(user); // vì user này đã có rồi nên nó chỉ update chứ không thêm mới
+//        // Lấy user vừa xong để kiểm tra
+//        User user2 = userRepository.findById(user.getId()).get();
+//        System.out.println("User: " + user);
+//        System.out.println("User2: " + user2);
+//        Long userId = user.getId();
+//        // Xoá user khỏi db & kiểm tra xem còn tồn tại không
+//        userRepository.delete(user);
+//        User user3 = userRepository.findById(userId).orElse(null);
+//        System.out.println("User3-(check deleted?): " + user3);
+
+        // Test for @Query
+        
     }
 
 }
