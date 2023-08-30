@@ -1,13 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Hello</title>
 </head>
 <body>
-    <h3>Đây là trang hello.html</h3>
-    <h5 th:text = "'Hello, ' + ${name}"></h5>
-<!--    <h1 th:text="'Hello, ' + ${name}"></h1>-->
-    <a href="/">Trang chủ</a>
+    <h1>Chỉ những ai đăng nhập mới truy cập được trang này!</h1>
+
+    <form th:action="@{/logout}" method="post">
+        <input type="submit" value="Sign Out">
+    </form>
 </body>
 </html>
