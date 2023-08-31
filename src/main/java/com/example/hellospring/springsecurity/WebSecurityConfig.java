@@ -1,32 +1,51 @@
 package com.example.hellospring.springsecurity;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
 // một interface tiện ích của Spring Security giúp chúng ta cài đặt các thông tin dễ dàng hơn.
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+    @Autowired
+    UserService userService;
 
-    // cung cấp thông tin user cho Spring Security
+//    // cung cấp thông tin user cho Spring Security
+//    @Bean
+//    @Override
+//    public UserDetailsService userDetailsService() {
+//        // Tạo ra user trong bộ nhớ
+//        InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
+//        manager.createUser(
+//                User.withDefaultPasswordEncoder()
+//                        .username("tiep")
+//                        .password("tiep")
+//                        .roles("USER")
+//                        .build()
+//        );
+//
+//        return manager;
+//    }
     @Bean
-    @Override
-    public UserDetailsService userDetailsService() {
-        // Tạo ra user trong bộ nhớ
-        InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
-        manager.createUser(
-                User.withDefaultPasswordEncoder()
-                        .username("tiep")
-                        .password("tiep")
-                        .roles("USER")
-                        .build()
-        );
+    public PasswordEncoder passwordEncoder() {
+        // Password encoder, để Spring Security sử dụng mã hóa mật khẩu người dùng
+        return new BCryptPasswordEncoder();
+    }
 
-        return manager;
+
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        super.configure(auth);
+        auth.userDetailsService(userService)
+            .passwordEncoder(passwordEncoder());
     }
 
     @Override

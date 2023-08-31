@@ -2,12 +2,17 @@ package com.example.hellospring;
 
 import com.example.hellospring.jpa_mysql.User;
 import com.example.hellospring.jpa_mysql.UserRepository;
+import com.example.hellospring.springsecurity.UserSecurity;
+import com.example.hellospring.springsecurity.UserSecurityRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 @SpringBootApplication
-public class HelloSpringApplication {
+public class HelloSpringApplication implements CommandLineRunner { // có tác dụng thực hiện một nhiệm vụ khi Spring khởi chạy lần đầu
 
     public static void main(String[] args) {
         // Nhiệm vụ chính của Spring là tạo ra một cái Container chứa các Dependency cho chúng ta
@@ -105,4 +110,19 @@ public class HelloSpringApplication {
         
     }
 
+    @Autowired
+    private UserSecurityRepository userSecurityRepository;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    @Override
+    public void run(String... args) throws Exception {
+        // Khi chương trình chạy
+        // Insert vào csdl một user
+        UserSecurity user = new UserSecurity();
+        user.setUsername("tiep");
+        user.setPassword(passwordEncoder.encode("tiep"));
+        userSecurityRepository.save(user);
+        System.out.println(user);
+    }
 }
