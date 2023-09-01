@@ -19,4 +19,9 @@ public class UserService implements UserDetailsService {
         if (userSecurity == null) throw new UsernameNotFoundException(s);
         return new CustomUserDetails(userSecurity);
     }
+
+    public UserDetails loadUserById(Long id) throws UsernameNotFoundException {
+        UserSecurity userSecurity = userSecurityRepository.findById(id).orElseThrow(() -> new UsernameNotFoundException("User not found with id: " + id));
+        return new CustomUserDetails(userSecurity);
+    }
 }
