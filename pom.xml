@@ -111,6 +111,22 @@
             <version>1.2.6</version>
         </dependency>
 
+        <!--    Redis    -->
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-redis</artifactId>
+        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.boot</groupId>-->
+<!--            <artifactId>spring-boot-starter-data-redis</artifactId>-->
+<!--        </dependency>-->
+        <!--  Help connect to Redis in a thread-safe way  -->
+        <dependency>
+            <groupId>io.lettuce</groupId>
+            <artifactId>lettuce-core</artifactId>
+            <version>5.1.3.RELEASE</version>
+        </dependency>
+
     </dependencies>
 
     <build>

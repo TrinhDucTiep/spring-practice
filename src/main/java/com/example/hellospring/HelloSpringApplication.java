@@ -12,7 +12,7 @@ import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 @SpringBootApplication
-public class HelloSpringApplication implements CommandLineRunner { // có tác dụng thực hiện một nhiệm vụ khi Spring khởi chạy lần đầu
+public class HelloSpringApplication  { //implements CommandLineRunner có tác dụng thực hiện một nhiệm vụ khi Spring khởi chạy lần đầu
 
     public static void main(String[] args) {
         // Nhiệm vụ chính của Spring là tạo ra một cái Container chứa các Dependency cho chúng ta
@@ -115,14 +115,14 @@ public class HelloSpringApplication implements CommandLineRunner { // có tác d
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    @Override
-    public void run(String... args) throws Exception {
-        // Khi chương trình chạy
-        // Insert vào csdl một user
-        UserSecurity user = new UserSecurity();
-        user.setUsername("tiep");
-        user.setPassword(passwordEncoder.encode("tiep"));
-        userSecurityRepository.save(user);
-        System.out.println(user);
-    }
+//    @Override
+//    public void run(String... args) throws Exception {
+//        // Khi chương trình chạy
+//        // Insert vào csdl một user
+//        UserSecurity user = new UserSecurity();
+//        user.setUsername("tiep");
+//        user.setPassword(passwordEncoder.encode("tiep"));
+//        userSecurityRepository.save(user);
+//        System.out.println(user);
+//    }
 }
